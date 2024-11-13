@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Download Files</title>
+</head>
+<body>
+    <script>
+        // Array of files to download
+        const files = ['sar.xlsx', 'sar2.xlsx'];
+
+        // Function to create and trigger the download with a delay
+        function downloadFiles() {
+            files.forEach((file, index) => {
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.href = file;
+                    link.download = file.split('/').pop(); // Extracts the file name
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }, index * 1000); // Delay in milliseconds (1000 ms = 1 second)
+            });
+        }
+
+        // Trigger download when the page loads
+        window.onload = downloadFiles;
+    </script>
+</body>
+</html>
